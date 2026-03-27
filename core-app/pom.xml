@@ -383,7 +383,17 @@
   </dependencies>
   
   	<build>
+		<sourceDirectory>src</sourceDirectory>
 	    <resources>
+	        <resource>
+	            <directory>resources</directory>
+	        </resource>
+	        <resource>
+	            <directory>src</directory>
+	            <includes>                      
+	                <include>**/*.json</include>
+	            </includes>
+	        </resource>
 	        <resource>
 	            <directory>src/main/java</directory>
 	            <includes>                      
@@ -430,7 +440,7 @@
 				<configuration>
 					<includeSystemScope>true</includeSystemScope>
 					<!-- export full jar file, remark this option -->
-					<skip>true</skip>
+					<skip>false</skip>
 				</configuration>
                 <executions>
                     <execution>
