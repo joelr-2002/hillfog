@@ -23,11 +23,11 @@
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i><@spring.message code="page.login.signin"/></h3>
           <div class="form-group">
             <label class="control-label"><@spring.message code="page.login.username"/></label>
-            <input class="form-control" type="text" name="username" id="username" placeholder="Account" maxlength="24" autofocus>
+            <input class="form-control" type="text" name="username" id="username" placeholder="<@spring.message code="page.common.account"/>" maxlength="24" autofocus>
           </div>
           <div class="form-group">
             <label class="control-label"><@spring.message code="page.login.password"/></label>
-            <input class="form-control" type="password" name="password" id="password" placeholder="Password" maxlength="16">
+            <input class="form-control" type="password" name="password" id="password" placeholder="<@spring.message code="page.common.password"/>" maxlength="16">
           </div>
           <!--  
           <div class="form-group">
@@ -44,27 +44,27 @@
           </div>
           -->
           <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i><@spring.message code="page.login.signin"/></button>
             <#if errMsg?has_content>
             <span class="badge badge-danger">${errMsg}</span>
             </#if>
             
             <br>
-            <a href="./loginPage?_lang=zh_CN">CN</a>&nbsp;|&nbsp;<a href="./loginPage?_lang=en_US">EN</a>&nbsp;|&nbsp;<a href="./loginPage?_lang=zh_TW">TW</a>
+            <a href="./loginPage?_lang=zh_CN">CN</a>&nbsp;|&nbsp;<a href="./loginPage?_lang=en_US">EN</a>&nbsp;|&nbsp;<a href="./loginPage?_lang=zh_TW">TW</a>&nbsp;|&nbsp;<a href="./loginPage?_lang=es_ES">ES</a>
             
           </div>
         </form>
         <form class="forget-form" action="index.html">
-          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i><@spring.message code="page.login.forgotPassword"/></h3>
           <div class="form-group">
-            <label class="control-label">EMAIL</label>
+            <label class="control-label"><@spring.message code="page.login.email"/></label>
             <input class="form-control" type="text" placeholder="Email">
           </div>
           <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+            <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i><@spring.message code="page.login.reset"/></button>
           </div>
           <div class="form-group mt-3">
-            <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+            <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> <@spring.message code="page.login.backToLogin"/></a></p>
           </div>
         </form>
       </div>
@@ -80,8 +80,8 @@
     <script type="text/javascript">
       // Login Page Flipbox control
       $('.login-content [data-toggle="flip"]').click(function() {
-      	$('.login-box').toggleClass('flipped');
-      	return false;
+          $('.login-box').toggleClass('flipped');
+          return false;
       });
     </script>
   </body>

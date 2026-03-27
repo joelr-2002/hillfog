@@ -16,64 +16,64 @@
 <script type="text/javascript">
 
 $( document ).ready(function() {
-	
-	
+    
+    
 });
 
 function getQueryGridFormatter(value) {
-	var str = '';
-	str += '<img alt="edit" title="Edit" src="./images/edit.png" onclick="editPage(\'' + value + '\');"/>';
-	str += '&nbsp;&nbsp;';		
-	str += '<img alt="delete" title="Delete" src="./images/delete.png" onclick="deleteRecord(\'' + value + '\');"/>';
-	return str;
+    var str = '';
+    str += '<img alt="edit" title="${getText("page.common.edit")}" src="./images/edit.png" onclick="editPage(\'' + value + '\');"/>';
+    str += '&nbsp;&nbsp;';        
+    str += '<img alt="delete" title="${getText("page.common.delete")}" src="./images/delete.png" onclick="deleteRecord(\'' + value + '\');"/>';
+    return str;
 }
 function getQueryGridHeader() {
-	return [
-		{ name: "#", 			field: "oid", 	formatter: getQueryGridFormatter },
-		{ name: "Id", 			field: "forId"			},
-		{ name: "Name",			field: "name"			},
-		{ name: "Description",	field: "description"	}
-	];
+    return [
+        { name: "#",             field: "oid",     formatter: getQueryGridFormatter },
+        { name: "${getText('page.organization.id')}",             field: "forId"            },
+        { name: "${getText('page.organization.name')}",            field: "name"            },
+        { name: "${getText('page.organization.description')}",    field: "description"    }
+    ];
 }
 
 function queryClear() {
-	$("#forId").val('');
-	$("#nameLike").val('');
-	
-	clearQueryGridTable();
-	
+    $("#forId").val('');
+    $("#nameLike").val('');
+    
+    clearQueryGridTable();
+    
 }  
 
 function editPage(oid) {
-	parent.addTab('HF_PROG001D0003E', parent.getProgUrlForOid('HF_PROG001D0003E', oid) );
+    parent.addTab('HF_PROG001D0003E', parent.getProgUrlForOid('HF_PROG001D0003E', oid) );
 }
 
 function deleteRecord(oid) {
-	parent.bootbox.confirm(
-			"Delete?", 
-			function(result) { 
-				if (!result) {
-					return;
-				}
-				xhrSendParameter(
-						'./hfFormulaDeleteJson', 
-						{ 'oid' : oid }, 
-						function(data) {
-							if ( _qifu_success_flag != data.success ) {
-								parent.notifyWarning( data.message );
-							}
-							if ( _qifu_success_flag == data.success ) {
-								parent.notifyInfo( data.message );
-							}
-							queryGrid();
-						}, 
-						function() {
-							
-						},
-						_qifu_defaultSelfPleaseWaitShow
-				);
-			}
-	);	
+    parent.bootbox.confirm(
+            "Delete?", 
+            function(result) { 
+                if (!result) {
+                    return;
+                }
+                xhrSendParameter(
+                        './hfFormulaDeleteJson', 
+                        { 'oid' : oid }, 
+                        function(data) {
+                            if ( _qifu_success_flag != data.success ) {
+                                parent.notifyWarning( data.message );
+                            }
+                            if ( _qifu_success_flag == data.success ) {
+                                parent.notifyInfo( data.message );
+                            }
+                            queryGrid();
+                        }, 
+                        function() {
+                            
+                        },
+                        _qifu_defaultSelfPleaseWaitShow
+                );
+            }
+    );    
 }
 
 </script>
@@ -83,27 +83,27 @@ function deleteRecord(oid) {
 <body>
 
 <@qifu.toolBar 
-	id="HF_PROG001D0003Q_toolbar" 
-	refreshEnable="Y"
-	refreshJsMethod="window.location=parent.getProgUrl('HF_PROG001D0003Q');" 
-	createNewEnable="Y"
-	createNewJsMethod="parent.addTab('HF_PROG001D0003A', null);"
-	saveEnabel="N" 
-	saveJsMethod="" 	
-	cancelEnable="Y" 
-	cancelJsMethod="parent.closeTab('HF_PROG001D0003Q');"
-	programName="${programName}"
-	programId="${programId}"
-	description="Management formula item." />		
+    id="HF_PROG001D0003Q_toolbar" 
+    refreshEnable="Y"
+    refreshJsMethod="window.location=parent.getProgUrl('HF_PROG001D0003Q');" 
+    createNewEnable="Y"
+    createNewJsMethod="parent.addTab('HF_PROG001D0003A', null);"
+    saveEnabel="N" 
+    saveJsMethod=""     
+    cancelEnable="Y" 
+    cancelJsMethod="parent.closeTab('HF_PROG001D0003Q');"
+    programName="${programName}"
+    programId="${programId}"
+    description="Management formula item." />        
 <#import "../common-f-head.ftl" as cfh />
 <@cfh.commonFormHeadContent /> 
       
       <div class="row">
         <div class="col-xs-6 col-md-6 col-lg-6">
-        	<@qifu.textbox name="forId" value="" id="forId" label="Id" placeholder="Enter Id" maxlength="14" />
+            <@qifu.textbox name="forId" value="" id="forId" label="Id" placeholder="Enter Id" maxlength="14" />
         </div>
         <div class="col-xs-6 col-md-6 col-lg-6">
-        	<@qifu.textbox name="nameLike" value="" id="nameLike" label="Name" placeholder="Enter name" maxlength="100" />
+            <@qifu.textbox name="nameLike" value="" id="nameLike" label="Name" placeholder="Enter name" maxlength="100" />
        </div>
       </div>
 
@@ -116,18 +116,18 @@ function deleteRecord(oid) {
 <p style="margin-bottom: 10px"></p>
 
 <@qifu.grid gridFieldStructure="getQueryGridHeader()" 
-	xhrParameter="
-	{
-		'parameter[forId]'		: $('#forId').val(),
-		'parameter[nameLike]'	: $('#nameLike').val(),
-		'select'				: getQueryGridSelect(),
-		'showRow'				: getQueryGridShowRow()
-	}
-	"
-	xhrUrl="./hfFormulaQueryGridJson" 
-	id="HF_PROG001D0003Q_grid"
-	queryFunction="queryGrid()"
-	clearFunction="clearQueryGridTable()" />
+    xhrParameter="
+    {
+        'parameter[forId]'        : $('#forId').val(),
+        'parameter[nameLike]'    : $('#nameLike').val(),
+        'select'                : getQueryGridSelect(),
+        'showRow'                : getQueryGridShowRow()
+    }
+    "
+    xhrUrl="./hfFormulaQueryGridJson" 
+    id="HF_PROG001D0003Q_grid"
+    queryFunction="queryGrid()"
+    clearFunction="clearQueryGridTable()" />
 
 <br/>
 <br/>
